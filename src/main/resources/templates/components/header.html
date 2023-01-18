@@ -2,14 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div class="header" style="background-color: rgba(0, 0, 0, 0.3);" th:fragment="myheader">
 
-	<nav class="navbar ml-auto navbar-expand navbar-dark sticky-top mt-2 text-white ">
+	<nav class="navbar ml-auto navbar-expand navbar-dark sticky-top text-white ">
 
 		<div class="collapse navbar-collapse justify-content-md-center d-flex flex-wrap">
-
+			<h1 class="text-white" > SuperDuperMarkt </h1>
 			<button class="nav-item m-2 p-2 rounded btn btn-outline-light text-uppercase"
-					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/home/') ? 'active':''}"
+					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/') ? 'active':''}"
 					th:onclick="|window.location.href='@{/home}'|"
 					type="button"><a th:text="'home'"></a>
+			</button>
+			<button class="nav-item m-2 p-2 rounded btn btn-outline-light text-uppercase"
+					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/inventory/') ? 'active':''}"
+					th:onclick="|window.location.href='@{/inventory}'|"
+					type="button"><a th:text="'Inventar'"></a>
+			</button>
+			<button class="nav-item m-2 p-2 rounded btn btn-outline-light text-uppercase"
+					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/import/') ? 'active':''}"
+					th:onclick="|window.location.href='@{/import}'|"
+					type="button"><a th:text="'Import'"></a>
 			</button>
 
 		</div>
