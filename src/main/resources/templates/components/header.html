@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="header" style="background-color: rgba(0, 0, 0, 0.3);" th:fragment="myheader">
+
+	<nav class="navbar ml-auto navbar-expand navbar-dark sticky-top mt-2 text-white ">
+
+		<div class="collapse navbar-collapse justify-content-md-center d-flex flex-wrap">
+
+			<button class="nav-item m-2 p-2 rounded btn btn-outline-light text-uppercase"
+					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/home/') ? 'active':''}"
+					th:onclick="|window.location.href='@{/home}'|"
+					type="button"><a th:text="'home'"></a>
+			</button>
+
+		</div>
+
+	</nav>
+
+    </div>
