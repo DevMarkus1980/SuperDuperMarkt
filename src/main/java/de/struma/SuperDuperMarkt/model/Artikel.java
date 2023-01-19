@@ -1,10 +1,6 @@
 package de.struma.SuperDuperMarkt.model;
 
-import de.struma.SuperDuperMarkt.repository.ArtikelRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -22,19 +18,18 @@ import java.util.List;
 public class Artikel {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private Long id;
-    private String bezeichnung;
-    private Integer qualitaet;
-    private Double preis;
-    private String kategorie;
+    @Id private Long id;
+    @NonNull private String bezeichnung;
+    @NonNull private Integer qualitaet;
+    @NonNull private Double preis;
+    @NonNull private String kategorie;
     @DateTimeFormat(pattern = "YYYY-MM-DD HH:mm:ss")
-    private LocalDateTime verfallsDatum;
+    @NonNull private LocalDateTime verfallsDatum;
 
 
 
     //    Diese Methode dient nur zum Testen
-    public List<Artikel> dumbSetter() {
+    public List<Artikel> dummyList() {
 
         LocalDateTime setDate = LocalDateTime.now();
         List<Artikel> listForDB = new ArrayList<>();
