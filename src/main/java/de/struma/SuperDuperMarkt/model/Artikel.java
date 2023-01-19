@@ -32,16 +32,18 @@ public class Artikel {
     private LocalDateTime verfallsDatum;
 
 
+
+    //    Diese Methode dient nur zum Testen
     public List<Artikel> dumbSetter() {
 
         LocalDateTime setDate = LocalDateTime.now();
         List<Artikel> listForDB = new ArrayList<>();
-        listForDB.add(new Artikel(1l, "Leerdamer", 32, 2.99d, "Käse", setDate.plusDays(1)));
-        listForDB.add(new Artikel(1l, "Edamer", 32, 2.99d, "Käse", setDate.plusDays(1)));
-        listForDB.add(new Artikel(1l, "Pizza", 32, 2.99d, "Allgemein", setDate.plusDays(1)));
-        listForDB.add(new Artikel(1l, "Brot", 32, 2.99d, "Allgemein", setDate.plusDays(1)));
-        listForDB.add(new Artikel(1l, "Dornfelder", 32, 2.99d, "Wein", setDate.plusDays(1)));
-        listForDB.add(new Artikel(1l, "Riesling", 32, 2.99d, "Wein", setDate.plusDays(1)));
+        listForDB.add(new Artikel(1L, "Leerdamer", 32, 2.99d, "Käse", setDate.plusDays(1)));
+        listForDB.add(new Artikel(2L, "Edamer", 32, 2.99d, "Käse", setDate.plusDays(2)));
+        listForDB.add(new Artikel(3L, "Pizza", 32, 2.99d, "Allgemein", setDate.plusDays(3)));
+        listForDB.add(new Artikel(4L, "Brot", 32, 2.99d, "Allgemein", setDate.plusDays(4)));
+        listForDB.add(new Artikel(5L, "Dornfelder", 32, 2.99d, "Wein", setDate.plusDays(5)));
+        listForDB.add(new Artikel(6L, "Riesling", 32, 2.99d, "Wein", setDate.plusDays(6)));
 
         return listForDB;
     }
