@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +23,15 @@ public class Artikel {
     @NonNull private Integer qualitaet;
     @NonNull private Double preis;
     @NonNull private String kategorie;
-    @DateTimeFormat(pattern = "YYYY-MM-DD HH:mm:ss")
-    @NonNull private LocalDateTime verfallsDatum;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NonNull private LocalDate verfallsDatum;
 
 
 
     //    Diese Methode dient nur zum Testen
     public List<Artikel> dummyList() {
 
-        LocalDateTime setDate = LocalDateTime.now();
+        LocalDate setDate = LocalDate.now();
         List<Artikel> listForDB = new ArrayList<>();
         listForDB.add(new Artikel(1L, "Leerdamer", 32, 2.99d, "Käse", setDate.plusDays(1)));
         listForDB.add(new Artikel(2L, "Edamer", 32, 2.99d, "Käse", setDate.plusDays(2)));
