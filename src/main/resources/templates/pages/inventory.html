@@ -9,7 +9,29 @@
 	<div class="p-4" style="background-color: rgba(0, 0, 0, 0.2);">
 		<div th:insert="/components/header :: myheader"></div>
 
+		<table id="dataTable" data-page-length='10' data-order='[[0, "desc"]]'
+			   class="table table-striped" style="width:90%" >
 
+			<thead class="sticky-top bg-dark text-white shadow">
+			<tr class="">
+				<th hidden>ID</th>
+				<th>Bezeichnung</th>
+				<th>Preis</th>
+				<th>Kategorie</th>
+				<th>Verfallsdatum</th>
+			</tr>
+
+			</thead>
+			<tbody class="">
+			<tr th:each="artikel : ${artikelList}">
+				<td hidden><span th:text="${artikel.id}"></span></td>
+				<td><span th:text="${artikel.bezeichnung}"></span></td>
+				<td><span th:text="${artikel.qualitaet}"></span></td>
+				<td>€ <span th:utext="${#numbers.formatDecimal(artikel.preis == null ? 0 : artikel.preis, 0, 2)}"></span></td>
+				<td><span th:text="${artikel.kategorie}"></span></td>
+			</tr>
+			</tbody>
+		</table>
 	</div>
 
 </body>
