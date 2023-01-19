@@ -10,12 +10,13 @@
 		<div th:insert="/components/header :: myheader"></div>
 
 		<table id="dataTable" data-page-length='10' data-order='[[0, "desc"]]'
-			   class="table table-striped" style="width:90%" >
+			   class="table table-striped" style="width:100%" >
 
 			<thead class="sticky-top bg-dark text-white shadow">
 			<tr class="">
 				<th hidden>ID</th>
 				<th>Bezeichnung</th>
+				<th>Qualität</th>
 				<th>Preis</th>
 				<th>Kategorie</th>
 				<th>Verfallsdatum</th>
@@ -29,6 +30,7 @@
 				<td><span th:text="${artikel.qualitaet}"></span></td>
 				<td>€ <span th:utext="${#numbers.formatDecimal(artikel.preis == null ? 0 : artikel.preis, 0, 2)}"></span></td>
 				<td><span th:text="${artikel.kategorie}"></span></td>
+				<td><span th:text="${artikel.verfallsDatum}"></span></td>
 			</tr>
 			</tbody>
 		</table>
