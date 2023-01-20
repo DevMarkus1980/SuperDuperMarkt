@@ -24,21 +24,23 @@ public class Kaese implements IStrategie {
         return injectArtikel;
     }
 
-    private void setTagesPreis(Artikel injectArtikel) {
-        if(injectArtikel.getBuchungsDatum().isBefore(LocalDate.now())){
-            injectArtikel.setTagesPreis(injectArtikel.getGrundPreis()+(0.1*injectArtikel.getQualitaet()));
+    private void setDailyQuality(Artikel injectArtikel) {
+        if(calulateRangeToLong(injectArtikel.getBuchungsDatum(), LocalDate.now()) >0){
+            injectArtikel.setQualitaet((int) (
+                    injectArtikel.getGrundQualitaet()-
+                    calulateRangeToLong(injectArtikel.getBuchungsDatum(), LocalDate.now())));
         }
+        else
+            injectArtikel.setQualitaet(injectArtikel.getGrundQualitaet());
     }
 
-    private void setDailyQuality(Artikel injectArtikel) {
-        if(checkRangeBetweenNowAndVerfallsDatum(injectArtikel) >0){
-            Integer first = injectArtikel.getGrundQualitaet();
-            Integer second = (int) checkRangeBetweenNowAndVerfallsDatum(injectArtikel);
-
-            injectArtikel.setQualitaet((int) (injectArtikel.getGrundQualitaet()-
-                                checkRangeBetweenNowAndVerfallsDatum(injectArtikel)));
+    private void setTagesPreis(Artikel injectArtikel) {
+        if(injectArtikel.getBuchungsDatum().isBefore(LocalDate.now())){
+            double temp = injectArtikel.getGrundPreis()+(0.1*injectArtikel.getQualitaet());
+            injectArtikel.setTagesPreis(temp);
         }
-
+        else
+            injectArtikel.setTagesPreis(injectArtikel.getGrundPreis());
     }
 
     private void checkQuality(Artikel injectArtikel){
@@ -48,13 +50,13 @@ public class Kaese implements IStrategie {
     }
 
     private void checkVerfallsDatum(Artikel injectArtikel) {
-        if(     checkRangeBetweenNowAndVerfallsDatum(injectArtikel)<50 ||
-                checkRangeBetweenNowAndVerfallsDatum(injectArtikel)>100)
+        long range = calulateRangeToLong(LocalDate.now(), injectArtikel.getVerfallsDatum());
+        if( range<50L || range>100 )
             injectArtikel.setRegalAuslegen(false);
     }
-    private long checkRangeBetweenNowAndVerfallsDatum(Artikel injectedArtikel){
+    private long calulateRangeToLong(LocalDate vonDatum, LocalDate bisDatum){
         return ChronoUnit.DAYS.between(
-                injectedArtikel.getVerfallsDatum(),
-                LocalDate.now());
+                vonDatum,
+                bisDatum);
     }
 }
