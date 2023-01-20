@@ -5,10 +5,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+
 @NoArgsConstructor
 @Component
-public class Kaese implements IStrategie {
+public class Kaese extends Allgemein implements IStrategy {
     @Override
     public boolean isRightStregie(Artikel checkArtikel) {
         return checkArtikel.getKategorie().toLowerCase().contains("Käse".toLowerCase());
@@ -20,7 +20,7 @@ public class Kaese implements IStrategie {
         setDailyQuality(injectArtikel);
         checkQuality(injectArtikel);
         checkVerfallsDatum(injectArtikel);
-        setTagesPreis(injectArtikel);
+        updateTagesPreis(injectArtikel);
         return injectArtikel;
     }
 
@@ -34,17 +34,8 @@ public class Kaese implements IStrategie {
             injectArtikel.setQualitaet(injectArtikel.getGrundQualitaet());
     }
 
-    private void setTagesPreis(Artikel injectArtikel) {
-        if(injectArtikel.getBuchungsDatum().isBefore(LocalDate.now())){
-            double temp = injectArtikel.getGrundPreis()+(0.1*injectArtikel.getQualitaet());
-            injectArtikel.setTagesPreis(temp);
-        }
-        else
-            injectArtikel.setTagesPreis(injectArtikel.getGrundPreis());
-    }
 
     private void checkQuality(Artikel injectArtikel){
-        Integer tester = injectArtikel.getQualitaet();
         if(injectArtikel.getQualitaet()<30)
             injectArtikel.setRegalAuslegen(false);
     }
@@ -54,9 +45,5 @@ public class Kaese implements IStrategie {
         if( range<50L || range>100 )
             injectArtikel.setRegalAuslegen(false);
     }
-    private long calulateRangeToLong(LocalDate vonDatum, LocalDate bisDatum){
-        return ChronoUnit.DAYS.between(
-                vonDatum,
-                bisDatum);
-    }
+
 }
