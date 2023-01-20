@@ -8,6 +8,7 @@
 
 	<div class="p-4" style="background-color: rgba(0, 0, 0, 0.2);">
 		<div th:insert="/components/header :: myheader"></div>
+		<div th:insert="/components/navbar_inventory :: navbar"></div>
 
 		<table id="dataTable" data-page-length='10' data-order='[[0, "desc"]]'
 			   class="table table-striped" style="width:100%" >
@@ -17,7 +18,8 @@
 				<th hidden>ID</th>
 				<th>Bezeichnung</th>
 				<th>Qualität</th>
-				<th>Preis</th>
+				<th>G.Preis</th>
+				<th>Tagespreis</th>
 				<th>Kategorie</th>
 				<th>Verfallsdatum</th>
 			</tr>
@@ -28,7 +30,8 @@
 				<td hidden><span th:text="${artikel.id}"></span></td>
 				<td><span th:text="${artikel.bezeichnung}"></span></td>
 				<td><span th:text="${artikel.qualitaet}"></span></td>
-				<td>€ <span th:utext="${#numbers.formatDecimal(artikel.preis == null ? 0 : artikel.preis, 0, 2)}"></span></td>
+				<td>€ <span th:utext="${#numbers.formatDecimal(artikel.grundPreis == null ? 0 : artikel.grundPreis, 1, 2)}"></span></td>
+				<td>€ <span th:utext="${#numbers.formatDecimal(artikel.tagesPreis == null ? 0 : artikel.tagesPreis, 1, 2)}"></span></td>
 				<td><span th:text="${artikel.kategorie}"></span></td>
 				<td><span th:text="${artikel.verfallsDatum}"></span></td>
 			</tr>
