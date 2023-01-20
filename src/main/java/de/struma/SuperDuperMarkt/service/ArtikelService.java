@@ -28,12 +28,11 @@ public class ArtikelService {
         return artikelRepository.findAll();
     }
 
-    public void setDummyList(){
+    private void setDummyList(){
         artikelRepository.saveAllAndFlush(new Artikel().dummyList());
     }
 
     public void validateArtikel(){
-        String test = "test";
         for (Artikel artikel:artikelRepository.findAll()) {
             strategyMapping.validateArtikelWithStrategie(artikel);
             artikelRepository.saveAndFlush(artikel);
