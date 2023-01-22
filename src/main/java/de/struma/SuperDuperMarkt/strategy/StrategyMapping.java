@@ -5,6 +5,7 @@ import de.struma.SuperDuperMarkt.strategy.strategy_kategorien.IStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 @Component
 public class StrategyMapping {
@@ -15,11 +16,11 @@ public class StrategyMapping {
         this.strategyWorker = strategyWorker;
     }
 
-    public Artikel validateArtikelWithStrategie(Artikel validierenderArtikel){
+    public Artikel validateArtikelWithStrategie(Artikel validierenderArtikel, LocalDate validateDatum){
 
         for (IStrategy strategie: strategyWorker) {
             if (strategie.isRightStregie(validierenderArtikel)){
-                return strategie.validateArtikel(validierenderArtikel);
+                return strategie.validateArtikel(validierenderArtikel, validateDatum);
             }
         }
         return validierenderArtikel;
