@@ -25,15 +25,18 @@ public class RegalController {
 	@GetMapping
 	public String showRegalToday(Model model) {
 		model.addAttribute("datum", LocalDate.now());
-		model.addAttribute("artikelList", artikelService.findAllByRegalAuslegen(true, LocalDate.now()));
+		model.addAttribute("view", "regal");
+		model.addAttribute("artikelList", artikelService.findAllByRegalAuslegen(LocalDate.now()));
 		return "pages/regal";
 	}
 	@GetMapping(value = "/increment/")
 	public String showRegalAfterUpdateDate(@RequestParam(name ="datum") String datum, Model model) {
+
 		LocalDate datumNew = LocalDate.parse(datum);
 		datumNew = datumNew.plusDays(1);
 		model.addAttribute("datum", datumNew);
-		model.addAttribute("artikelList", artikelService.findAllByRegalAuslegen(true, datumNew));
+		model.addAttribute("view", "regal");
+		model.addAttribute("artikelList", artikelService.findAllByRegalAuslegen(datumNew));
 		return "pages/regal";
 	}
 

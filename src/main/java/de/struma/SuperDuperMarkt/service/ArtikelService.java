@@ -26,14 +26,10 @@ public class ArtikelService {
         return artikelRepository.findAll();
     }
 
-    private void setDummyList(){
-        artikelRepository.saveAllAndFlush(new Artikel().dummyList());
-    }
-
-    public Object findAllByRegalAuslegen(boolean eingeraumtOderNicht, LocalDate updateDatum) {
+    public Object findAllByRegalAuslegen(LocalDate updateDatum) {
         SetDummyList();
         validateArtikel(updateDatum);
-        return artikelRepository.findAllByRegalAuslegen(eingeraumtOderNicht);
+        return artikelRepository.findAll();
     }
 
     // Methoden gegen Redundanzen
@@ -46,6 +42,6 @@ public class ArtikelService {
 
     private void SetDummyList() {
         if(artikelRepository.count()<1)
-            setDummyList();
+            artikelRepository.saveAllAndFlush(new Artikel().dummyList());
     }
 }
