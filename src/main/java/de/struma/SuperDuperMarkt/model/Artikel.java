@@ -1,6 +1,9 @@
 package de.struma.SuperDuperMarkt.model;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -43,12 +46,12 @@ public class Artikel {
 
         LocalDate setDate = LocalDate.now();
         List<Artikel> listForDB = new ArrayList<>();
-        listForDB.add(new Artikel(1L,"Leerdamer", 32, 2.99d, "Käse", setDate.plusDays(1)));
-        listForDB.add(new Artikel(2L,"Edamer", 32, 2.99d, "Käse", setDate.plusDays(2)));
-        listForDB.add(new Artikel(3L,"Pizza", 32, 2.99d, "Allgemein", setDate.plusDays(3)));
-        listForDB.add(new Artikel(4L,"Brot", 32, 2.99d, "Allgemein", setDate.plusDays(4)));
-        listForDB.add(new Artikel(5L,"Dornfelder", 32, 2.99d, "Wein", setDate.plusDays(5)));
-        listForDB.add(new Artikel(6L,"Riesling", 32, 2.99d, "Wein", setDate.plusDays(6)));
+        listForDB.add(new Artikel(1L,"Leerdamer", 50, 2.99d, "Käse", setDate.plusDays(50)));
+        listForDB.add(new Artikel(2L,"Edamer", 60, 2.99d, "Käse", setDate.plusDays(70)));
+        listForDB.add(new Artikel(3L,"Pizza", 12, 2.99d, "Allgemein", setDate.plusDays(30)));
+        listForDB.add(new Artikel(4L,"Brot", 42, 2.99d, "Allgemein", setDate.plusDays(40)));
+        listForDB.add(new Artikel(5L,"Dornfelder", 52, 2.99d, "Wein", setDate.plusDays(50)));
+        listForDB.add(new Artikel(6L,"Riesling", 32, 2.99d, "Wein", setDate.plusDays(63)));
 
         return listForDB;
     }
