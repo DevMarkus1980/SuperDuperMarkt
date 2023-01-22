@@ -5,6 +5,6 @@ import de.struma.SuperDuperMarkt.model.Artikel;
 import java.time.LocalDate;
 
 public interface IStrategy {
-    boolean isRightStregie(Artikel checkArtikel);
+    boolean isRightStrategy(Artikel checkArtikel);
     Artikel validateArtikel(Artikel injectArtikel, LocalDate validateDatum);
 }

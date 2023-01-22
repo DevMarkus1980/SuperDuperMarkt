@@ -19,7 +19,7 @@ public class StrategyMapping {
     public Artikel validateArtikelWithStrategie(Artikel validierenderArtikel, LocalDate validateDatum){
 
         for (IStrategy strategie: strategyWorker) {
-            if (strategie.isRightStregie(validierenderArtikel)){
+            if (strategie.isRightStrategy(validierenderArtikel)){
                 return strategie.validateArtikel(validierenderArtikel, validateDatum);
             }
         }

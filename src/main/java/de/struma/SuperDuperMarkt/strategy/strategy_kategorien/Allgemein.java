@@ -16,7 +16,7 @@ TODO: Regel für dieses Muster
 public class Allgemein implements IStrategy{
 
     @Override
-    public boolean isRightStregie(Artikel checkArtikel) {
+    public boolean isRightStrategy(Artikel checkArtikel) {
         return checkArtikel.getKategorie().toLowerCase().contains("Allgemein".toLowerCase());
     }
 

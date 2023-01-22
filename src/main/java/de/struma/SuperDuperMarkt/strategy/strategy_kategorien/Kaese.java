@@ -20,7 +20,7 @@ TODO: Regel für dieses Muster
 public class Kaese extends Allgemein implements IStrategy {
 
     @Override
-    public boolean isRightStregie(Artikel checkArtikel) {
+    public boolean isRightStrategy(Artikel checkArtikel) {
         return checkArtikel.getKategorie().toLowerCase().contains("Käse".toLowerCase());
     }
 
@@ -46,10 +46,7 @@ public class Kaese extends Allgemein implements IStrategy {
 
 
     private void checkQuality(Artikel injectArtikel){
-        if(injectArtikel.getQualitaet()<30)
-            injectArtikel.setRegalAuslegen(false);
-        else
-            injectArtikel.setRegalAuslegen(true);
+        injectArtikel.setRegalAuslegen(injectArtikel.getQualitaet() >= 30);
     }
 
     private void checkVerfallsDatum(Artikel injectArtikel, LocalDate validateDatum) {

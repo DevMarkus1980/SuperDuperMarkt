@@ -17,7 +17,7 @@ TODO: Regel für dieses Muster
 @Component
 public class Wein extends Allgemein implements IStrategy {
     @Override
-    public boolean isRightStregie(Artikel checkArtikel) {
+    public boolean isRightStrategy(Artikel checkArtikel) {
         return checkArtikel.getKategorie().toLowerCase().contains("Wein".toLowerCase());
     }
 
