@@ -3,11 +3,10 @@ package de.struma.SuperDuperMarkt.service;
 import de.struma.SuperDuperMarkt.model.Artikel;
 import de.struma.SuperDuperMarkt.repository.ArtikelRepository;
 import de.struma.SuperDuperMarkt.strategy.StrategyMapping;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -22,9 +21,8 @@ public class ArtikelService {
     }
 
     public List<Artikel> getArtikelList(){
-        if(artikelRepository.count()<1)
-            setDummyList();
-        validateArtikel();
+        SetDummyList();
+        validateArtikel(LocalDate.now());
         return artikelRepository.findAll();
     }
 
@@ -32,13 +30,22 @@ public class ArtikelService {
         artikelRepository.saveAllAndFlush(new Artikel().dummyList());
     }
 
-    public void validateArtikel(){
+    public Object findAllByRegalAuslegen(boolean eingeraumtOderNicht, LocalDate updateDatum) {
+        SetDummyList();
+        validateArtikel(updateDatum);
+        return artikelRepository.findAllByRegalAuslegen(eingeraumtOderNicht);
+    }
+
+    // Methoden gegen Redundanzen
+    public void validateArtikel(LocalDate validateDatum){
         for (Artikel artikel:artikelRepository.findAll()) {
-            strategyMapping.validateArtikelWithStrategie(artikel);
+            strategyMapping.validateArtikelWithStrategie(artikel, validateDatum);
             artikelRepository.saveAndFlush(artikel);
-
-
         }
     }
 
+    private void SetDummyList() {
+        if(artikelRepository.count()<1)
+            setDummyList();
+    }
 }
