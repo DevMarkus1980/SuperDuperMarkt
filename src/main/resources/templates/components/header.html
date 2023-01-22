@@ -4,8 +4,8 @@
 
 	<nav class="navbar ml-auto navbar-expand navbar-dark sticky-top text-white ">
 
+		<h1 class="text-white ps-3" > SuperDuperMarkt </h1>
 		<div class="collapse navbar-collapse justify-content-md-center d-flex flex-wrap">
-			<h1 class="text-white" > SuperDuperMarkt </h1>
 			<button class="nav-item m-2 p-2 rounded btn btn-outline-light text-uppercase"
 					th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
 					th:onclick="|window.location.href='@{/home}'|"
@@ -15,6 +15,11 @@
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/inventory') ? 'active':''}"
 					th:onclick="|window.location.href='@{/inventory}'|"
 					type="button"><a th:text="'Inventar'"></a>
+			</button>
+			<button class="nav-item m-2 p-2 rounded btn btn-outline-light text-uppercase"
+					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/regal') ? 'active':''}"
+					th:onclick="|window.location.href='@{/regal}'|"
+					type="button"><a th:text="'Regal'"></a>
 			</button>
 			<button class="nav-item m-2 p-2 rounded btn btn-outline-light text-uppercase"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/import') ? 'active':''}"
