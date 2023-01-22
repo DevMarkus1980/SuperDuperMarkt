@@ -32,8 +32,13 @@ public class Allgemein implements IStrategy{
     }
 
     protected void updateTagesPreis(Artikel injectArtikel, LocalDate validateDatum) {
-        double temp = injectArtikel.getGrundPreis()+(0.1*injectArtikel.getQualitaet());
-        injectArtikel.setTagesPreis(temp);
+
+        if(injectArtikel.getRegalAuslegen())
+            injectArtikel.setTagesPreis(injectArtikel.getGrundPreis()+(0.1*injectArtikel.getQualitaet()));
+        else if(injectArtikel.getTagesPreis()==null)
+            injectArtikel.setTagesPreis(injectArtikel.getGrundPreis());
+        else
+            injectArtikel.setTagesPreis(injectArtikel.getTagesPreis());
     }
 
     protected long calulateRangeToLong(LocalDate vonDatum, LocalDate bisDatum){
