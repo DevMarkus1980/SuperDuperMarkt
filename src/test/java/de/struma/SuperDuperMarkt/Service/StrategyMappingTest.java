@@ -5,7 +5,9 @@ import de.struma.SuperDuperMarkt.strategy.StrategyMapping;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 @SpringBootTest
@@ -16,15 +18,15 @@ public class StrategyMappingTest {
     Artikel testArtikel;
     LocalDate date;
 
-    @BeforeEach
+    @BeforeAll
     public void setUp() {
-        date = LocalDate.now().plusDays(1);
+        date = LocalDate.now().plusDays(50);
         testArtikel = new Artikel(
                 1L,
                 "Tester",
-                32,
+                40,
                 2.10d,
-                "Käse",
+                "tester",
                 date); // Verfallsdatum
     }
     @AfterAll
@@ -36,10 +38,12 @@ public class StrategyMappingTest {
     @DisplayName("Artikel-Validierung-Kaese")
     @Test
     void testValidationArtikelKaese() {
-        testArtikel.setBuchungsDatum(date.minusDays(10));
+        testArtikel.setKategorie("Käse");
+        testArtikel.setBuchungsDatum(date.minusDays(1));
         strategyMapping.validateArtikelWithStrategie(testArtikel, LocalDate.now());
-        assumeTrue(testArtikel.getTagesPreis()  == 4.40d,"TagesPreis wurde korrekt gesetzt"); // 2,10+(0,1*23)
-        assumeTrue(!testArtikel.getRegalAuslegen(),"Ins Regal wurde überprüft!");
+        assumeTrue(testArtikel.getTagesPreis()  == 6.10d,"TagesPreis wurde korrekt gesetzt"); // 2,10+(0,1*30)
+        assumeTrue(testArtikel.getRegalAuslegen(),"Ins Regal wurde überprüft!");
+
     }
     @DisplayName("Artikel-Validierung-Wein")
     @Test
@@ -48,18 +52,18 @@ public class StrategyMappingTest {
         testArtikel.setKategorie("Wein");
         testArtikel.setBuchungsDatum(date.minusDays(33));
         strategyMapping.validateArtikelWithStrategie(testArtikel, LocalDate.now());
-        assumeTrue(testArtikel.getTagesPreis()  == 4.40d,"TagesPreis wurde korrekt gesetzt"); // 2,10+(0,1*23)
-        assumeTrue(!testArtikel.getRegalAuslegen(),"Ins Regal wurde überprüft!");
+        assumeTrue(testArtikel.getTagesPreis()  == 6.00d,"TagesPreis wurde korrekt gesetzt"); // 2,10+(0,1*23)
+        assumeTrue(testArtikel.getRegalAuslegen(),"Ins Regal wurde überprüft!");
     }
     @DisplayName("Artikel-Validierung-Allgemein")
     @Test
     void testValidationArtikelAllgemein() {
         //TODO: Test noch an die regeln anpasssen!
         testArtikel.setKategorie("Allgemein");
-        testArtikel.setBuchungsDatum(date.minusDays(33));
+        testArtikel.setBuchungsDatum(date.minusDays(10));
         strategyMapping.validateArtikelWithStrategie(testArtikel, LocalDate.now());
-        assumeTrue(testArtikel.getTagesPreis()  == 4.40d,"TagesPreis wurde korrekt gesetzt"); // 2,10+(0,1*23)
-        assumeTrue(!testArtikel.getRegalAuslegen(),"Ins Regal wurde überprüft!");
+        assumeTrue(testArtikel.getTagesPreis()  ==  6.10d,"TagesPreis wurde korrekt gesetzt"); // 2,10+(0,1*23)
+        assumeTrue(testArtikel.getRegalAuslegen(),"Ins Regal wurde überprüft!");
     }
 
 }
