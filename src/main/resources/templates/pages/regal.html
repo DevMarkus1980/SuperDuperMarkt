@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="components/head :: head">
+	<title> SDM - Regal  </title>
+</head>
+
+<body>
+	<div class="p-4" style="background-color: rgba(0, 0, 0, 0.2);">
+		<div th:insert="/components/header :: myheader"></div>
+		<div th:insert="/components/navbar_inventory :: navbar"></div>
+		<div th:insert="/components/table_inventory :: table"></div>
+	</div>
+</body>
+</html>

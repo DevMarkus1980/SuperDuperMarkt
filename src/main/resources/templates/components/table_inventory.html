@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="header" style="background-color: rgba(0, 0, 0, 0.3);" th:fragment="table">
+
+	<table id="dataTable" data-page-length='10' data-order='[[0, "desc"]]'
+		   class="table table-striped" style="width:100%" >
+
+		<thead class="sticky-top bg-dark text-white shadow">
+		<tr class="">
+			<th hidden>ID</th>
+			<th>Bezeichnung</th>
+			<th>Qualität</th>
+			<th>G.Preis</th>
+			<th>Tagespreis</th>
+			<th>Kategorie</th>
+			<th>Verfallsdatum</th>
+		</tr>
+
+		</thead>
+		<tbody class="">
+		<tr th:each="artikel : ${artikelList}">
+			<td hidden><span th:text="${artikel.id}"></span></td>
+			<td><span th:text="${artikel.bezeichnung}"></span></td>
+			<td><span th:text="${artikel.qualitaet}"></span></td>
+			<td>€ <span th:utext="${#numbers.formatDecimal(artikel.grundPreis == null ? 0 : artikel.grundPreis, 1, 2)}"></span></td>
+			<td>€ <span th:utext="${#numbers.formatDecimal(artikel.tagesPreis == null ? 0 : artikel.tagesPreis, 1, 2)}"></span></td>
+			<td><span th:text="${artikel.kategorie}"></span></td>
+			<td><span th:text="${artikel.verfallsDatum}"></span></td>
+		</tr>
+		</tbody>
+	</table>
+
+    </div>

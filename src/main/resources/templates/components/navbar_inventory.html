@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="header" style="background-color: rgba(0, 0, 0, 0.6);" th:fragment="navbar">
+
+	<nav class="navbar ml-auto navbar-expand navbar-dark sticky-top text-white ">
+
+		<div class="me-5">
+			<button th:text="*{datum}" type="button" disabled class="btn btn-outline-light btn-sm ms-2"></button>
+		</div>
+
+		<div class="collapse navbar-collapse justify-content-md-center d-flex flex-wrap">
+
+			<button class="nav-item m-1 p-1 rounded btn btn-outline-light btn-sm text-uppercase"
+					th:onclick="|window.location.href='@{/regal}'|"
+					th:classappend="${#httpServletRequest.getRequestURI() == '/regal' ? 'active':''}"
+					type="button"><a th:text="' heute '"></a>
+			</button>
+			<a		th:href="@{/regal/increment/(datum=${datum})}">
+					<button class="nav-item m-1 p-1 rounded btn btn-outline-light btn-sm text-uppercase"
+						type="button"> +1day </button>
+			</a>
+
+		</div>
+
+	</nav>
+
+    </div>
