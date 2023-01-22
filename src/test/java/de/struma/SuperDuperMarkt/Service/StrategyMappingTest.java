@@ -37,7 +37,7 @@ public class StrategyMappingTest {
     @Test
     void testValidationArtikelKaese() {
         testArtikel.setBuchungsDatum(date.minusDays(10));
-        strategyMapping.validateArtikelWithStrategie(testArtikel);
+        strategyMapping.validateArtikelWithStrategie(testArtikel, LocalDate.now());
         assumeTrue(testArtikel.getTagesPreis()  == 4.40d,"TagesPreis wurde korrekt gesetzt"); // 2,10+(0,1*23)
         assumeTrue(!testArtikel.getRegalAuslegen(),"Ins Regal wurde überprüft!");
     }
@@ -47,17 +47,17 @@ public class StrategyMappingTest {
 
         testArtikel.setKategorie("Wein");
         testArtikel.setBuchungsDatum(date.minusDays(33));
-        strategyMapping.validateArtikelWithStrategie(testArtikel);
+        strategyMapping.validateArtikelWithStrategie(testArtikel, LocalDate.now());
         assumeTrue(testArtikel.getTagesPreis()  == 4.40d,"TagesPreis wurde korrekt gesetzt"); // 2,10+(0,1*23)
         assumeTrue(!testArtikel.getRegalAuslegen(),"Ins Regal wurde überprüft!");
     }
     @DisplayName("Artikel-Validierung-Allgemein")
     @Test
     void testValidationArtikelAllgemein() {
-
+        //TODO: Test noch an die regeln anpasssen!
         testArtikel.setKategorie("Allgemein");
         testArtikel.setBuchungsDatum(date.minusDays(33));
-        strategyMapping.validateArtikelWithStrategie(testArtikel);
+        strategyMapping.validateArtikelWithStrategie(testArtikel, LocalDate.now());
         assumeTrue(testArtikel.getTagesPreis()  == 4.40d,"TagesPreis wurde korrekt gesetzt"); // 2,10+(0,1*23)
         assumeTrue(!testArtikel.getRegalAuslegen(),"Ins Regal wurde überprüft!");
     }
