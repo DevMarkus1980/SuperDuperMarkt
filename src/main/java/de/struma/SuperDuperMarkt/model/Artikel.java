@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Artikel {
 
-    @NonNull @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NonNull
     private String bezeichnung;
@@ -41,17 +41,18 @@ public class Artikel {
     LocalDate buchungsDatum = LocalDate.now();
 
 
+
     //    Diese Methode dient nur zum Testen
     public List<Artikel> dummyList() {
 
         LocalDate setDate = LocalDate.now();
         List<Artikel> listForDB = new ArrayList<>();
-        listForDB.add(new Artikel(1L,"Leerdamer", 50, 2.99d, "Käse", setDate.plusDays(50)));
-        listForDB.add(new Artikel(2L,"Edamer", 60, 2.99d, "Käse", setDate.plusDays(70)));
-        listForDB.add(new Artikel(3L,"Pizza", 12, 2.99d, "Allgemein", setDate.plusDays(30)));
-        listForDB.add(new Artikel(4L,"Brot", 42, 2.99d, "Allgemein", setDate.plusDays(40)));
-        listForDB.add(new Artikel(5L,"Dornfelder", 52, 2.99d, "Wein", setDate.plusDays(50)));
-        listForDB.add(new Artikel(6L,"Riesling", 32, 2.99d, "Wein", setDate.plusDays(63)));
+        listForDB.add(new Artikel("Leerdamer", 50, 2.99d, "Käse", setDate.plusDays(50)));
+        listForDB.add(new Artikel("Edamer", 60, 2.99d, "Käse", setDate.plusDays(70)));
+        listForDB.add(new Artikel("Pizza", 12, 2.99d, "Allgemein", setDate.plusDays(30)));
+        listForDB.add(new Artikel("Brot", 42, 2.99d, "Allgemein", setDate.plusDays(40)));
+        listForDB.add(new Artikel("Dornfelder", 52, 2.99d, "Wein", setDate.plusDays(50)));
+        listForDB.add(new Artikel("Riesling", 32, 2.99d, "Wein", setDate.plusDays(63)));
 
         return listForDB;
     }
