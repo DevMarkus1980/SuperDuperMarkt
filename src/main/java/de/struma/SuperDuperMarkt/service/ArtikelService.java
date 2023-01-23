@@ -44,4 +44,8 @@ public class ArtikelService {
         if(artikelRepository.count()<1)
             artikelRepository.saveAllAndFlush(new Artikel().dummyList());
     }
+
+    public void createNewArtikel(Artikel artikel) {
+        artikelRepository.save(artikel);
+    }
 }
