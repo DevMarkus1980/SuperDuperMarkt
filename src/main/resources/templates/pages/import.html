@@ -9,9 +9,21 @@
 	<div class="p-4" style="background-color: rgba(0, 0, 0, 0.2);">
 		<div th:insert="/components/header :: myheader"></div>
 
+
+		<form method="post" class="was-validated m-5 ps-3 border" enctype="multipart/form-data" th:action="@{/import/csv}">
+			<div><label class="fw-bolder">Select File</label>
+				<div th:if="${message != null and message != ''}">
+					<p th:text="${message}"></p>
+				</div>
+				<input type="file" name="file" />
+				<input type="submit" value="Upload" />
+			</div>
+		</form>
+
+
 		<form class="was-validated m-5" method="post" th:action="@{/import/neue/}" th:object="${newArtikel}" >
 
-			<div><label class="fw-bolder">id</label>
+			<div hidden><label class="fw-bolder">id</label>
 				<input id="id" class="form-control is valid" autocomplete="off" readonly type="number" th:field="*{id}"/></div>
 			<div class="m-1"><label class="fw-bolder">Bezeichnung</label>
 				<input id="beschreibung" class="form-control is valid" required autocomplete="off" type="text" th:field="*{bezeichnung}"/></div>
@@ -50,7 +62,6 @@
 			<div class="btn-group mt-2 me-1 col-12" role="group">
 				<input type="submit" class="btn btn-primary col-6" value="Speichern">
 			</div>
-	</div>
-
+		</form>
 </body>
 </html>

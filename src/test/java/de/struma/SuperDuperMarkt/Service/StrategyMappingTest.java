@@ -22,7 +22,6 @@ public class StrategyMappingTest {
     public void setUp() {
         date = LocalDate.now().plusDays(50);
         testArtikel = new Artikel(
-                1L,
                 "Tester",
                 40,
                 2.10d,
